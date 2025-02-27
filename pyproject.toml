@@ -16,6 +16,7 @@ mistralai = { version = "^1.0.3", optional = true }
 openai = { version = "^1.35.8", optional = true }
 ibm-watsonx-ai = { version = "^1.1.16", optional = true }
 docstring-parser = { version = "^0.14.0", optional = true }
+google-genai = { version = "^0.2.8", optional = true }
 
 # Optional dependencies for different providers
 httpx = "~0.27.0"
@@ -32,7 +33,7 @@ mistral = ["mistralai"]
 ollama = []
 openai = ["openai"]
 watsonx = ["ibm-watsonx-ai"]
-all = ["anthropic", "aws", "google", "groq", "mistral", "openai", "cohere", "watsonx"]  # To install all providers
+all = ["anthropic", "aws", "google", "groq", "mistral", "openai", "cohere", "watsonx", "google-genai"]  # To install all providers
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.7.1"

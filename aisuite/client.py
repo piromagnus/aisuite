@@ -91,6 +91,8 @@ class Upload:
         """
         Upload a file to the provider's storage service.
         """
+        if provider_key!="genai":
+            raise ValueError(f"Invalid provider key '{provider_key}'. Supported providers: google-genai. ")
         provider = ProviderFactory.create_provider(provider_key, self.client.provider_configs.get(provider_key, {}))
         if not provider:
             raise ValueError(f"Could not load provider for '{provider_key}'.")

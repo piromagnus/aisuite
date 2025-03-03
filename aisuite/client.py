@@ -76,6 +76,26 @@ class Client:
         if not self._chat:
             self._chat = Chat(self)
         return self._chat
+    
+    @property
+    def upload(self):
+        """Return the upload API interface."""
+        if not self._upload:
+            self._upload = Upload(self)
+        return self._upload
+
+class Upload:
+    def __init__(self, client: "Client"):
+        self.client = client
+    def upload_file(self,file_path: str, provider_key :str, **kwargs):
+        """
+        Upload a file to the provider's storage service.
+        """
+        provider = ProviderFactory.create_provider(provider_key, self.client.provider_configs.get(provider_key, {}))
+        if not provider:
+            raise ValueError(f"Could not load provider for '{provider_key}'.")
+
+        return provider.upload_file(file_path, **kwargs)
 
 
 class Chat:

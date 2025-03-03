@@ -50,6 +50,16 @@ class Client:
 
         return provider_key
 
+    def upload_file(self,file_path: str, provider_key :str, **kwargs):
+        """
+        Upload a file to the provider's storage service.
+        """
+        provider = self.providers.get(provider_key)
+        if not provider:
+            raise ValueError(f"Could not load provider for '{provider_key}'.")
+
+        return provider.upload_file(file_path, **kwargs)
+
     def configure(self, provider_configs: dict = None):
         """
         Configure the client with provider configurations.
